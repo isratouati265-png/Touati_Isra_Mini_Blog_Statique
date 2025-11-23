@@ -61,3 +61,140 @@ footer p {
     font-size: 1.1rem;
 }
 
+#choix-categorie {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    background: linear-gradient(90deg, #c42a72, #72045a);
+    color: #e0e0e0;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+#choix-categorie option {
+    background: white;
+    color: black;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+#articles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.article {
+    background: #f4d9ea;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(255, 78, 120, 0.3);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.8s ease-in-out;
+    border: 1px solid #FF4E78;
+    cursor: pointer;
+    color: #333;
+}
+
+.article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 78, 120, 0.5);
+    border-color: #FF4E78;
+}
+
+.article img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.article-content {
+    padding: 1rem;
+}
+
+.article h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #490130;
+}
+
+.article p {
+    margin: 0 0 0.5rem 0;
+    color: #000000;
+}
+
+.article-date {
+    font-size: 0.9rem;
+    color: #030303;
+}
+
+#navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    background: #a9176f;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 92, 122, 0.4);
+}
+
+button:hover:not(:disabled) {
+    background: #d42b8b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 92, 122, 0.6);
+}
+
+button:disabled {
+    background: #E4E4E4;
+    color: black;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+
+    #articles-container {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        padding: 1rem 0.5rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+}
+

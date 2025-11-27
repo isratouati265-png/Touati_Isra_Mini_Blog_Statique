@@ -165,3 +165,63 @@ function updateNavigation() {
     nextBtn.disabled = currentPage === totalPages;
     pageInfo.textContent = `Page ${currentPage} sur ${totalPages}`;
 }
+function changePage(direction) {
+    const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+    if (direction === 'prev' && currentPage > 1) {
+        currentPage--;
+    } else if (direction === 'next' && currentPage < totalPages) {
+        currentPage++;
+    }
+    renderArticles();
+    updateNavigation();
+}
+
+function showArticleDetail(article) {
+    const modal = document.getElementById('article-modal');
+    const detail = document.getElementById('article-detail');
+    detail.innerHTML = `
+        <h2 style="color: #5D4E37; margin-bottom: 10px;">${article.titre}</h2>
+        <p style="margin-bottom: 20px; color: #8B7355; font-size: 0.9em;">Publié le ${new Date(article.date).toLocaleDateString('fr-FR')}</p>
+        <div style="line-height: 1.8; color: #5D4E37;">
+            ${article.contenu}
+        </div>
+    `;
+    modal.style.display = 'block';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadArticles();
+
+    document.getElementById('choix-categorie').addEventListener('change', (e) => {
+        filterArticles(e.target.value);
+    });
+
+    document.getElementById('search-input').addEventListener('input', (e) => {
+        const query = e.target.value.trim();
+        if (query.length > 0) {
+            searchArticles(query);
+        } else {
+            const currentCategory = document.getElementById('choix-categorie').value;
+            filterArticles(currentCategory);
+        }
+    });
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+        changePage('prev');
+    });
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+        changePage('next');
+    });
+
+    const modal = document.getElementById('article-modal');
+    const closeBtn = document.getElementsByClassName('close')[0];
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+});
